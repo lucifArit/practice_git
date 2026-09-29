@@ -1,3 +1,2 @@
 # practice_git
-learning git basics
-by --Arit
+learning git basics with --Arit
