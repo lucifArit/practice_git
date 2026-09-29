@@ -1,0 +1,419 @@
+# Git & GitHub Basics — Beginner's Guide
+
+<p>
+    In this guide, I will cover the basics of Git, including how to create a repository, clone it to your local computer, track changes, commit changes, and push those changes to GitHub.
+</p>
+
+---
+
+## 1. Create a Repository on GitHub
+
+First, create a new repository on **GitHub**.
+
+After creating the repository:
+
+1. Open your repository on GitHub.
+2. Click the **Code** button.
+3. Select **HTTPS** under the Clone section.
+4. Copy the repository URL.
+
+It will look something like:
+
+```text
+https://github.com/username/practice_git.git
+```
+
+---
+
+# 2. Create a Folder on Your Computer
+
+Now create a folder on your computer where you want to keep your Git projects.
+
+For example:
+
+```text
+C:\Users\hazra\OneDrive\Documents\basicOfGit
+```
+
+Open this folder in **VS Code**.
+
+Then open:
+
+**Terminal → New Terminal**
+
+Your terminal will initially show something like:
+
+```powershell
+C:\Users\hazra\OneDrive\Documents\basicOfGit>
+```
+
+---
+
+# 3. Clone the GitHub Repository
+
+Now copy the repository from GitHub to your computer using:
+
+```bash
+git clone "paste-the-repository-link-here"
+```
+
+For example:
+
+```bash
+git clone "https://github.com/username/practice_git.git"
+```
+
+Git will download the repository into your current folder.
+
+You should now have:
+
+```text
+basicOfGit/
+│
+└── practice_git/
+    ├── README.md
+    └── ...
+```
+
+So your terminal path will still be:
+
+```text
+C:\Users\hazra\OneDrive\Documents\basicOfGit>
+```
+
+---
+
+# 4. Change the Directory
+
+Before running Git commands for this repository, you need to enter the repository folder.
+
+Run:
+
+```bash
+cd practice_git
+```
+
+Now your terminal will show:
+
+```text
+C:\Users\hazra\OneDrive\Documents\basicOfGit\practice_git>
+```
+
+You are now **inside the Git repository** and can perform Git commands.
+
+You can verify this using:
+
+```bash
+git status
+```
+
+---
+
+# 5. Make Changes to Your Project
+
+Now open the project files and make some changes.
+
+For example, modify:
+
+```text
+README.md
+```
+
+Add some new text and save the file.
+
+At this point, the changes exist **only on your local computer**.
+
+They have **not yet been uploaded to GitHub**.
+
+---
+
+# 6. Check the Changes — `git status`
+
+Before adding your changes, check what has changed:
+
+```bash
+git status
+```
+
+Git will show files that have been modified.
+
+For example:
+
+```text
+On branch main
+
+Changes not staged for commit:
+  modified: README.md
+```
+
+This means Git detected a change in `README.md`.
+
+---
+
+# 7. Add the Changes — `git add`
+
+Now tell Git that you want to include these changes in your next commit.
+
+To add **all changed files**, use:
+
+```bash
+git add .
+```
+
+The `.` means:
+
+> Add all changes in the current directory.
+
+You can also add a specific file:
+
+```bash
+git add README.md
+```
+
+---
+
+# 8. Commit the Changes — `git commit`
+
+After adding the changes, create a commit:
+
+```bash
+git commit -m "Update README"
+```
+
+The `-m` allows you to provide a message describing what you changed.
+
+For example:
+
+```bash
+git commit -m "Add Git basics to README"
+```
+
+A commit is basically a **saved checkpoint of your changes in Git**.
+
+At this point:
+
+```text
+Local computer
+      ↓
+   Git commit
+      ↓
+Local Git repository
+```
+
+But the changes are **still not on GitHub**.
+
+---
+
+# 9. Push the Changes to GitHub
+
+Now upload your committed changes to GitHub.
+
+You can use:
+
+```bash
+git push origin main
+```
+
+Here:
+
+* `git push` → uploads your commits
+* `origin` → the GitHub repository you cloned
+* `main` → the branch you are pushing to
+
+After this command completes, your changes should appear on GitHub.
+
+The overall process is:
+
+```text
+Make changes
+     ↓
+git status
+     ↓
+git add .
+     ↓
+git commit -m "message"
+     ↓
+git push origin main
+     ↓
+GitHub
+```
+
+---
+
+# 10. What Does `git push` Do?
+
+Once your repository's upstream branch has been configured, you can usually simply run:
+
+```bash
+git push
+```
+
+instead of:
+
+```bash
+git push origin main
+```
+
+So these are **not two separate steps**:
+
+```bash
+git push origin main
+git push
+```
+
+You normally use **one or the other**.
+
+For beginners, I recommend understanding:
+
+```bash
+git push origin main
+```
+
+first.
+
+Later, you can use:
+
+```bash
+git push
+```
+
+as the shorter version.
+
+---
+
+# Complete Workflow
+
+Whenever you make changes to your project, the basic workflow is:
+
+### Step 1 — Check changes
+
+```bash
+git status
+```
+
+### Step 2 — Add changes
+
+```bash
+git add .
+```
+
+### Step 3 — Commit changes
+
+```bash
+git commit -m "Describe your changes"
+```
+
+### Step 4 — Push to GitHub
+
+```bash
+git push origin main
+```
+
+Or, after the upstream is configured:
+
+```bash
+git push
+```
+
+---
+
+## 🧠 Understanding the Three Main Areas
+
+A useful way to understand Git is:
+
+```text
+        Your Computer
+              │
+              │ edit files
+              ↓
+       Working Directory
+              │
+          git add .
+              ↓
+        Staging Area
+              │
+      git commit -m "..."
+              ↓
+       Local Repository
+              │
+           git push
+              ↓
+          GitHub
+```
+
+### In simple words:
+
+| Command                | What it does                           |
+| ---------------------- | -------------------------------------- |
+| `git status`           | Check what changed                     |
+| `git add .`            | Prepare changes for commit             |
+| `git commit -m "..."`  | Save a checkpoint locally              |
+| `git push origin main` | Upload commits to GitHub               |
+| `git push`             | Upload to the configured remote branch |
+
+---
+
+# ⭐ Simple Example
+
+Suppose you modify `README.md`.
+
+You would run:
+
+```bash
+git status
+```
+
+Then:
+
+```bash
+git add .
+```
+
+Then:
+
+```bash
+git commit -m "Update README file"
+```
+
+Finally:
+
+```bash
+git push origin main
+```
+
+Now the updated `README.md` will be available on your GitHub repository.
+
+---
+
+## 🔑 The Most Important Thing to Remember
+
+Think of Git as a **local version-control system**, while GitHub is the **remote place where your repository is hosted**.
+
+```text
+Your files
+   ↓
+git add
+   ↓
+Staging
+   ↓
+git commit
+   ↓
+Local Git history
+   ↓
+git push
+   ↓
+GitHub
+```
+
+So the core Git workflow is simply:
+
+> **Check → Add → Commit → Push**
+
+```bash
+git status
+git add .
+git commit -m "your message"
+git push
+```
+
+That is the workflow you'll use again and again when working with Git.
